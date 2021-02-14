@@ -2,6 +2,7 @@ from flask import Flask, render_template, json, url_for
 from werkzeug.exceptions import HTTPException
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
+import requests
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
@@ -49,6 +50,12 @@ def _testing():
 @auth.login_required
 @app.route("/rekuperatorius")
 def _rekuperatorius():
+    # rek_ip = 'http://192.168.0.200/i.asp'  # Get fresh rekup data (which is sent constantly)
+    # TODO: Create new python file with all programing in new file, NOT HERE
+    rek_ip = 'http://192.168.0.200'  # Get fresh rekup data (which is sent constantly)
+    ups = {'1': 'user', '2': 'user'}
+    webpage_data = requests.post(url=rek_ip, data=ups)
+    print(webpage_data.content)
     return render_template('rekup.html', title='REKUPERATORIUS')
 
 
