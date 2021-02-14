@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+
+    {% if title %}
+    <title>HomeProject - {{ title }}</title>
+    {% else %}
+    <title>HomeProject</title>
+    {% endif %}
+
+    <!-- Bootstrap CSS CDN -->
+    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+          integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+          rel="stylesheet">
+    <!-- Our Custom CSS -->
+     <link href='{{ url_for("static", filename="home2.css") }}' rel="stylesheet" type="text/css">
+    <!-- Scrollbar Custom CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
+          rel="stylesheet">
+
+    <!-- Font Awesome JS -->
+    <script crossorigin="anonymous" defer
+            integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+            src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"></script>
+    <script crossorigin="anonymous" defer
+            integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+            src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav class="mCustomScrollbar _mCS_1 mCS-autoHide" id="sidebar" style="overflow: visible;">
+        <div class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" id="mCSB_1" style="max-height: none;"
+             tabindex="0">
+            <div class="mCSB_container" dir="ltr" id="mCSB_1_container" style="position:relative; top:0; left:0;">
+                <div class="sidebar-header">
+                    <h3>HomeProject</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <p>Current time: 00:00:00</p>
+                    <li class="active">
+                        <a href="/home">Home </a>
+                    </li>
+                    <li>
+                        <a href="/rekuperatorius">REKUPERATORIUS</a>
+                    </li>
+                    <li>
+                        <a href="/durys">DURYS</a>
+                    </li>
+                    <li>
+                        <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#pageSubmenu">Pages</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical"
+             id="mCSB_1_scrollbar_vertical" style="display: block;">
+            <div class="mCSB_draggerContainer">
+                <div class="mCSB_dragger" id="mCSB_1_dragger_vertical"
+                     style="position: absolute; min-height: 50px; height: 183px; top: 0px; display: block; max-height: 313px;">
+                    <div class="mCSB_dragger_bar" style="line-height: 50px;"></div>
+                </div>
+                <div class="mCSB_draggerRail"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+    <div id="content">
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
+            <div class="container-fluid">
+
+                <button class="btn btn-info" id="sidebarCollapse" type="button">
+                    <svg aria-hidden="true" class="svg-inline--fa fa-align-left fa-w-14" data-fa-i2svg=""
+                         data-icon="align-left" data-prefix="fas" role="img" viewBox="0 0 448 512"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M288 44v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16V44c0-8.837 7.163-16 16-16h256c8.837 0 16 7.163 16 16zM0 172v40c0 8.837 7.163 16 16 16h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16zm16 312h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm256-200H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16h256c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16z"
+                              fill="currentColor"></path>
+                    </svg><!-- <i class="fas fa-align-left"></i> -->
+                </button>
+                <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                        class="btn btn-dark d-inline-block d-lg-none ml-auto" data-target="#navbarSupportedContent"
+                        data-toggle="collapse" type="button">
+                    <svg aria-hidden="true" class="svg-inline--fa fa-align-justify fa-w-14" data-fa-i2svg=""
+                         data-icon="align-justify" data-prefix="fas" role="img" viewBox="0 0 448 512"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 84V44c0-8.837 7.163-16 16-16h416c8.837 0 16 7.163 16 16v40c0 8.837-7.163 16-16 16H16c-8.837 0-16-7.163-16-16zm16 144h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 256h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0-128h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"
+                              fill="currentColor"></path>
+                    </svg><!-- <i class="fas fa-align-justify"></i> -->
+                </button>
+            </div>
+        </nav>
+        <div class="first_window">
+
+        </div>
+        <div class="away-image">
+
+        </div>
+<!--        <div class="flexbox-container">-->
+<!--            <div class="flexbox-item flexbox-item-1"></div>-->
+<!--            <div class="axis main-axis"></div>-->
+<!--            <div class="axis cross-axis"></div>-->
+<!--        </div>-->
+    </div>
+</div>
+
+
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<!-- Popper.JS -->
+<script crossorigin="anonymous"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script crossorigin="anonymous"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<!-- jQuery Custom Scroller CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+
+
+
+</script>
+</body>
+
+</html>
