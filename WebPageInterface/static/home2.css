@@ -163,7 +163,7 @@ a.article:hover {
 }
 
 /* ---------------------------------------------------
-    MEDIAQUERIES _ASDAS DAD ASD ASD
+    MEDIAQUERIES
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
@@ -184,29 +184,58 @@ a.article:hover {
     }
 }
 
-.flexbox-container {
+
+/* ---------------------------------------------------
+    Rekuperatoriaus images
+----------------------------------------------------- */
+.control-table{
     display: flex;
     justify-content: left;
     align-items: left;
-    width: 100%;
+    width: calc(100% - 250px)
     height: 100%;
-}
+    margin: 20px;
+    border-radius: 0;
+    margin-left: 0;
 
-.flexbox-item {
-    width: 200px;
-    margin: 10px;
-    border: 3px solid #333;
-    background-color: #dfdfdf;
-}
-.first_window {
-    background-color: red;
-    width: 100px;
-    height: 100px;
-    border: 1px solid black;
 }
 
 .away-image {
-  background-image: url("1.png"); /* The image used */
+  background-image: url("control_images/1-away.png"); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 50px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 1px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+.normal-image {
+  background-image: url("control_images/2-normal.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 50px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 1px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+.intensive-image {
+  background-image: url("control_images/3-intensive.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 50px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 1px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+.boost-image {
+  background-image: url("control_images/4-boost.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 50px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 1px;
+  background-repeat: no-repeat; /* Do not repeat the image */
 }
