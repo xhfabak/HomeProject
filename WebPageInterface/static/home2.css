@@ -184,11 +184,11 @@ a.article:hover {
     }
 }
 
-
 /* ---------------------------------------------------
-    Rekuperatoriaus images
+    Webpage window size
 ----------------------------------------------------- */
-.control-table{
+
+.first-control-table{
     display: flex;
     justify-content: left;
     align-items: left;
@@ -197,8 +197,21 @@ a.article:hover {
     margin: 20px;
     border-radius: 0;
     margin-left: 0;
-
 }
+
+.second-control-table{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    width: calc(100% - 250px)
+    height: 100%;
+    margin: 20px;
+    border-radius: 0;
+    margin-left: 0;
+}
+/* ---------------------------------------------------
+    Rekuperatoriaus images
+----------------------------------------------------- */
 
 .away-image {
   background-image: url("control_images/1-away.png"); /* The image used */
@@ -206,7 +219,7 @@ a.article:hover {
   height: 50px; /* You must set a specified height */
   width: 50px;
   border: 1px solid black;
-  margin: 1px;
+  margin: 5px;
   background-repeat: no-repeat; /* Do not repeat the image */
 }
 
@@ -216,7 +229,7 @@ a.article:hover {
   height: 50px; /* You must set a specified height */
   width: 50px;
   border: 1px solid black;
-  margin: 1px;
+  margin: 5px;
   background-repeat: no-repeat; /* Do not repeat the image */
 }
 
@@ -226,7 +239,7 @@ a.article:hover {
   height: 50px; /* You must set a specified height */
   width: 50px;
   border: 1px solid black;
-  margin: 1px;
+  margin: 5px;
   background-repeat: no-repeat; /* Do not repeat the image */
 }
 
@@ -236,6 +249,14 @@ a.article:hover {
   height: 50px; /* You must set a specified height */
   width: 50px;
   border: 1px solid black;
-  margin: 1px;
+  margin: 5px;
   background-repeat: no-repeat; /* Do not repeat the image */
+}
+
+/* ---------------------------------------------------
+    Rekuperatoriaus date response
+----------------------------------------------------- */
+
+.rekup-data {
+
 }

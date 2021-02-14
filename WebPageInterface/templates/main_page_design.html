@@ -102,11 +102,11 @@
                 </button>
             </div>
         </nav>
-        <div class="control-table">
-            <div class="away-image"></div>
-            <div class="normal-image"></div>
-            <div class="intensive-image"></div>
-            <div class="boost-image"></div>
+        <div class="first-control-table">
+            {% block first_control %}{% endblock first_control %}
+        </div>
+        <div class="second-control-table">
+            {% block second_control %}{% endblock second_control %}
         </div>
 
     </div>
@@ -140,7 +140,6 @@
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
         });
-
 
 
 </script>

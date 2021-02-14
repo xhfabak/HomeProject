@@ -31,7 +31,6 @@ def _home_main_page():
 @auth.login_required
 @app.route("/test")
 def _testing():
-    # # Call http://192.168.0.200/i.asp
     # GET XML data
 
     # # PARSE XML to JSON object
@@ -46,20 +45,17 @@ def _testing():
     #
     return render_template('login_page.html'), "Test page is working!"
 
+
 @auth.login_required
 @app.route("/rekuperatorius")
 def _rekuperatorius():
-    return render_template('login_page.html', title='REKUPERATORIUS')
+    return render_template('rekup.html', title='REKUPERATORIUS')
 
-# @auth.login_required
-# @app.route("/rekuperatorius/control")
-# def _rekuperatorius():
-#     return render_template('login_page.html', title='REKUPERATORIUS')
 
 @auth.login_required
 @app.route("/durys")
 def _duru_apsauga():
-    return render_template('login_page.html', title='APSAUGA')
+    return render_template('durys.html', title='APSAUGA')
 
 
 # ---------------------------------------------------------------------------------------------------------------------
