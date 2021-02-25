@@ -1,12 +1,23 @@
 {% extends 'main_page_design.html' %}
 
 {% block first_control %}
-    <div class="away-image"></div>
-    <div class="normal-image"></div>
-    <div class="intensive-image"></div>
-    <div class="boost-image"></div>
+<div class="away-image" onclick="changeMode('1')"></div>
+<div class="normal-image" onclick="changeMode('2')"></div>
+<div class="intensive-image" onclick="changeMode('3')"></div>
+<div class="boost-image" onclick="changeMode('4')"></div>
+<script>
+    function changeMode(mode){
+       console.log(mode);
+       var xhttp = new XMLHttpRequest();
+       xhttp.open("POST", `http://localhost:5000/rekuperatorius?mode=${mode}`, true);
+       xhttp.setRequestHeader("Access-Control-Allow-Origin", "true");
+       xhttp.send();
+
+    }
+</script>
+
 {% endblock first_control %}
 
 {% block second_control %}
-    <div><h4>Here will be information</h4></div>
+<div><h4>Here will be information</h4></div>
 {% endblock second_control %}

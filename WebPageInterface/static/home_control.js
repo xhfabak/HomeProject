@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 function run_away()
 {
-    $.get({
+    $.post({
                 url: "./rekuperatorius/control/away",
                 data: "",
                 success: function( data ) {

@@ -1,9 +1,10 @@
-from flask import Flask, render_template, json, url_for
+from flask import Flask, render_template, json, url_for, request
 from werkzeug.exceptions import HTTPException
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import rekuperat
 import schedule
+import requests
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
@@ -49,9 +50,9 @@ def _testing():
 @app.route("/rekuperatorius")
 def _rekuperatorius():
 
-    schedule.every(1).hours.do(rekuperat._handle_login_page)
-    schedule.every(5).seconds.do(rekuperat._refresh_data)
-    schedule.run_pending()
+    schedule.every(1).hours.do(rekuperat._handle_login_page)  # TODO: fix with difference run
+    schedule.every(5).seconds.do(rekuperat._refresh_data)  # TODO: fix with difference run
+    schedule.run_pending()  # TODO: fix with difference run
 
     return render_template('rekup.html', title='REKUPERATORIUS')
 
@@ -61,6 +62,22 @@ def _rekuperatorius():
 def _duru_apsauga():
     return render_template('durys.html', title='APSAUGA')
 
+
+@app.route("/rekuperatorius", methods=["POST"])
+def _xuiznajit():
+    rekup_mode = request.args.get("mode")
+    print(rekup_mode)
+    changeRekupMode(rekup_mode)  # Insert other number of Mode
+    return render_template('durys.html', title='APSAUGA')  # TODO: fix, since need to return somekind of information
+
+
+def changeRekupMode(mode):
+    url = 'http://192.168.0.200/ajax.xml'
+    myobj = {'3': mode}  # '3' - mode request || mode - (int) of selected item
+    print('Hitted')  # add Previous mode name before changing.
+    x = requests.post(url, data=myobj)
+    print(x.status_code)  # add LOG after mode is changed, what new mode it is
+    
 
 # ---------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
