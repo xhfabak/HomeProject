@@ -6,13 +6,11 @@
 <div class="intensive-image" onclick="changeMode('3')"></div>
 <div class="boost-image" onclick="changeMode('4')"></div>
 <script>
-    function changeMode(mode){
-       console.log(mode);
+function changeMode(mode){console.log(mode);
        var xhttp = new XMLHttpRequest();
        xhttp.open("POST", `http://localhost:5000/rekuperatorius?mode=${mode}`, true);
        xhttp.setRequestHeader("Access-Control-Allow-Origin", "true");
        xhttp.send();
-
     }
 </script>
 
