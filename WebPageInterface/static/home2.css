@@ -210,47 +210,93 @@ a.article:hover {
     margin-left: 0;
 }
 /* ---------------------------------------------------
-    Rekuperatoriaus images
+    Rekuperatoriaus control images
 ----------------------------------------------------- */
 
-.away-image {
+.mode-container {
+  position: relative;
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 70px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;
+}
+.active {
+    background-color: red;
+}
+
+.mode-name {
+  padding: 3px;
+  position: absolute;
+  bottom: 0px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #35b5e4;
+}
+#away-image {
   background-image: url("control_images/1-away.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 50px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
-.normal-image {
+#normal-image {
   background-image: url("control_images/2-normal.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 50px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
-.intensive-image {
+#intensive-image {
   background-image: url("control_images/3-intensive.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 50px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
 }
 
-.boost-image {
+#boost-image {
   background-image: url("control_images/4-boost.png"); /* The image used */
+}
+
+/* ---------------------------------------------------
+    Rekuperatoriaus data images
+----------------------------------------------------- */
+
+.humidity-image {
+  background-image: url("control_images/humidity.png"); /* The image used */
   background-color: #cccccc; /* Used if the image is unavailable */
-  height: 50px; /* You must set a specified height */
+  height: 70px; /* You must set a specified height */
   width: 50px;
   border: 1px solid black;
   margin: 5px;
   background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;
+}
+
+.income-temp-image {
+  background-image: url("control_images/income_temperature.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 70px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;
+}
+
+.filter-image {
+  background-image: url("control_images/filter_icon.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 70px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;
+}
+
+.eco-system-image {
+  background-image: url("control_images/filter_icon.png"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 70px; /* You must set a specified height */
+  width: 50px;
+  border: 1px solid black;
+  margin: 5px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;
 }
 
 /* ---------------------------------------------------

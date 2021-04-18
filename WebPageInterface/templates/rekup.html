@@ -1,21 +1,30 @@
 {% extends 'main_page_design.html' %}
 
 {% block first_control %}
-<div class="away-image" onclick="changeMode('1')"></div>
-<div class="normal-image" onclick="changeMode('2')"></div>
-<div class="intensive-image" onclick="changeMode('3')"></div>
-<div class="boost-image" onclick="changeMode('4')"></div>
+<div class="mode-container" id="away-image" onclick="changeMode('1', this.id)"><div class="mode-name">Away</div></div>
+<div class="mode-container" id="normal-image" onclick="changeMode('2', this.id)"><div class="mode-name">Normal</div></div>
+<div class="mode-container" id="intensive-image" onclick="changeMode('3', this.id)"><div class="mode-name">Intense</div></div>
+<div class="mode-container" id="boost-image" onclick="changeMode('4', this.id)"><div class="mode-name">Boost</div></div>
 <script>
-function changeMode(mode){console.log(mode);
+function changeMode(mode, elementId){
        var xhttp = new XMLHttpRequest();
-       xhttp.open("POST", `http://localhost:5000/rekuperatorius?mode=${mode}`, true);
+       xhttp.open("POST", `http://127.0.0.1:5000/rekuperatorius?mode=${mode}`, true);
        xhttp.setRequestHeader("Access-Control-Allow-Origin", "true");
        xhttp.send();
+       var currentActiveModeElement = document.getElementsByClassNameact("ive");
+       console.log(currentActiveModeElement);
+       if (currentActiveModeElement) {
+                currentActiveModeElement.classList.remove("active");
+       }
+       document.getElementById(elementId).classList.add("active");
     }
 </script>
 
 {% endblock first_control %}
 
 {% block second_control %}
-<div><h4>Here will be information</h4></div>
+<div class="humidity-image"></div>
+<div class="income-temp-image"></div>
+<div class="filter-image"></div>
+<div class="eco-system-image"></div>
 {% endblock second_control %}

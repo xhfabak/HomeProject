@@ -41,8 +41,8 @@ def _testing():
 @app.route("/rekuperatorius")
 def _rekuperatorius():
 
-    # local_control_file._handle_login_page()
-    local_control_file._refresh_data()
+    local_control_file._handle_login_page()
+    local_control_file._refresh_data(log_stamp=True)
 
     return render_template('rekup.html', title='REKUPERATORIUS')
 
@@ -50,7 +50,6 @@ def _rekuperatorius():
 @app.route("/rekuperatorius", methods=["POST"])
 def _change_rekup_mode():
     mode_options = request.args.get("mode")
-    print(mode_options)
     local_control_file._change_rekup_mode(mode_options)  # Insert other number of Mode
     return render_template('durys.html', title='APSAUGA')  # TODO: fix, since need to return somekind of information
 
