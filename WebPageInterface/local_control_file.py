@@ -40,10 +40,10 @@ def _refresh_data(log_stamp: bool = False):
     converted_response = ET.fromstring(refreshed_data.text)
     saved_data = ET.ElementTree(converted_response)
     saved_data.write(_xml_file)
-
+    # TODO: XML > JSON - Return JSON
+    # TODO:
     if log_stamp:
         print(_current_time, '>> Information was updated while trying to open page <<')
-
 
 def _change_rekup_mode(mode):
     """Change ventilation system mode by using 'ajax.xml' inject """

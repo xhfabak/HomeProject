@@ -42,8 +42,8 @@ def _testing():
 def _rekuperatorius():
 
     local_control_file._handle_login_page()
-    local_control_file._refresh_data(log_stamp=True)
-
+    parsedResult = local_control_file._refresh_data(log_stamp=True)
+    # Return parsedResult to  html render_template method.
     return render_template('rekup.html', title='REKUPERATORIUS')
 
 
