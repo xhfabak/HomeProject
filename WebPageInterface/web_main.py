@@ -1,3 +1,6 @@
+import threading
+import time
+
 from flask import Flask, render_template, json, url_for, request
 from werkzeug.exceptions import HTTPException
 from flask_httpauth import HTTPBasicAuth
@@ -40,26 +43,48 @@ def _testing():
 @auth.login_required
 @app.route("/rekuperatorius")
 def _rekuperatorius():
-
-    local_control_file._handle_login_page()
-    parsedResult = local_control_file._refresh_data(log_stamp=True)
-    # Return parsedResult to  html render_template method.
+    parsed_result = local_control_file.GetData.refresh_data_from_device(log_stamp=True)
+    # TODO: Return parsedResult to HTML render_template method.
     return render_template('rekup.html', title='REKUPERATORIUS')
 
 
 @app.route("/rekuperatorius", methods=["POST"])
-def _change_rekup_mode():
+def _change_ventilation_mode():
     mode_options = request.args.get("mode")
-    local_control_file._change_rekup_mode(mode_options)  # Insert other number of Mode
-    return render_template('durys.html', title='APSAUGA')  # TODO: fix, since need to return somekind of information
+    local_control_file.GetData.change_device_ventilation_state(mode_options)  # Insert other number of Mode
+    # TODO: fix, since need to return somekind of information
+    return render_template('durys.html', title='APSAUGA')
 
 
 @auth.login_required
 @app.route("/durys")
-def _duru_apsauga():
+def _door_lock():
     return render_template('durys.html', title='APSAUGA')
+
+
+# ----- Constant refresh data -----------------------------------------------------------------------------------------
+def run_login_every_hour():
+    """Make constant login page information inject (otherwise refresh data will no be reached)."""
+    while True:
+        local_control_file.GetData.login_page_credentials_injection()
+        time.sleep(60*60)  # sleep for 1 hour
+
+
+def run_login_every_5sec():
+    """Make constant data request from device to update data for page widgets."""
+    while True:
+        local_control_file.GetData.refresh_data_from_device()
+        time.sleep(5)  # sleep for 5 seconds
 
 
 # ---------------------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+    login_thread = threading.Thread(target=run_login_every_hour)
+    login_thread.daemon = True
+    login_thread.start()
+
+    data_thread = threading.Thread(target=run_login_every_5sec)
+    data_thread.daemon = True
+    data_thread.start()
+
     app.run(debug=True)
