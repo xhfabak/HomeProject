@@ -40,7 +40,7 @@ class GetData(object):
 
         time.sleep(0.1)  # Magic delay
 
-        result = GetData.save_requested_data_to_json(data=refreshed_data)
+        GetData.save_requested_data_to_json(data=refreshed_data)
 
         if log_stamp:
             print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), '>> Information was updated while trying to open page <<')
@@ -88,69 +88,69 @@ class GetData(object):
 class StoredDataFromFile(object):
     """Get sorted information of """
 
-    # @staticmethod
-    # def income_temp_data() -> str:
-    #     """Read XML file and return SUPPLY TEMPERATURE degrees
-    #
-    #     :return: str of <AI0> xml file data
-    #     """
-    #
-    #     tree = ET.parse(_xml_file)  #TODO: Replace (xml is old)
-    #     root = tree.getroot()
-    #     ai0_result = None
-    #     for ai0 in root.findall('./AI0'):
-    #         ai0_result = ai0.text
-    #
-    #     return ai0_result
-    #
-    # @staticmethod
-    # def filter_data() -> str:
-    #     """Read XML file and return FILTER percentage
-    #
-    #     :return: str of <FCG> xml file data
-    #     """
-    #
-    #     tree = ET.parse(_xml_file)  #TODO: Replace (xml is old)
-    #     root = tree.getroot()
-    #     fcg_result = None
-    #     for fcg in root.findall('./FCG'):
-    #         fcg_result = fcg.text
-    #
-    #     return fcg_result
-    #
-    # @staticmethod
-    # def humidity_data() -> str:
-    #     """Read XML file and return HUMIDITY percentage
-    #
-    #     :return: str of <AH> xml file data
-    #     """
-    #
-    #     tree = ET.parse(_xml_file)  #TODO: Replace (xml is old)
-    #     root = tree.getroot()
-    #     ah_result = None
-    #     for ah in root.findall('./AH'):
-    #         ah_result = ah.text
-    #
-    #     return ah_result
+    @staticmethod
+    def check_expected_data_from_json(checking_data: str) -> str:
+        """Read XML file and return degrees
+
+        :param checking_data: check expected air ventilation system data element from JSON file to return result in page
+        (AH - Humidity, FCG - Filter, AI0 - Supply temperature, VF -  Eco mode, EC4 - Heater power)
+        :return: str of <AI0> xml file data
+        """
+
+        GetData.refresh_data_from_device()
+
+        with open(_json_file, 'r') as read_file:
+            json_data = json.load(read_file)
+            returned_data = json_data['A'][checking_data]
+
+            # Eco mode (VF) is returned as int (i.e "140656652")
+            if checking_data == 'VF':
+                rule = int(returned_data[:2])  # firs 2 numbers defines mode state
+                if rule == 13:
+                    returned_data = 'OFF'
+                elif rule == 14:
+                    returned_data = 'ON'
+                else:
+                    returned_data = 'Check mode result!'
+                # return returned_data
+
+            return returned_data
 
     @staticmethod
     def ventilation_program_state(text: str) -> str:
         """Read XML file and return current rekuperatorius mode state
 
-        :param text: print text
-        :return: str of <OMO> xml file data
+        :param text: text before returning result
+        :return: str of <OMO> result
         """
-
-        object_name = 'OMO'
 
         GetData.refresh_data_from_device()
 
-        # print('test')
-
         with open(_json_file, 'r') as read_file:
-            print(read_file)
-        #     data = json.loads(_json_file)
-        #     print(data["OMO"])
+            json_data = json.load(read_file)
+            omo_result = json_data['A']['OMO']
 
-            # print(_current_time, f'>> {text} - {omo_result}')  # add Previous mode name before changing.
-            # return omo_result
+            print(_current_time, f'>> {text} - {omo_result}')  # add Previous mode name before changing.
+            return omo_result
+
+    @staticmethod
+    def list_of_expected_data_to_return():
+        """Return expected data results to website to print constantly"""
+
+        filt = StoredDataFromFile.check_expected_data_from_json('FCG')  # Filter
+        humidity = StoredDataFromFile.check_expected_data_from_json('AH')  # Humidity
+        eco = StoredDataFromFile.check_expected_data_from_json('VF')  # Eco mode
+        supply = StoredDataFromFile.check_expected_data_from_json('AI0')  # Supply temp
+        heater = StoredDataFromFile.check_expected_data_from_json('EC4')  # Heater power
+        parsed_result = {
+        "humidity": humidity,
+        "supply": supply,
+        "filter": filt,
+        "eco": eco,
+        "heater": heater
+        }
+
+        print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), parsed_result)
+        return parsed_result
+
+

@@ -16,47 +16,27 @@ function changeMode(mode, elementId){
 }
 
 async function getRefreshData() {
-    fetch(new Request('http://127.0.0.1:5000/rekuperatorius/data'), { method: "GET", headers: {"Access-Control-Allow-Origin": "true"}})
+    fetch(new Request('http://127.0.0.1:5000/rekuperatorius/data'), { method: "GET",
+                                                                      headers: {"Access-Control-Allow-Origin": "true"}})
       .then(response => {
-       reused_trusai(response)
+      console.log(response);
+      const data = response.json
+      console.log(data);
+       //sorted_data(data)
     }).catch(error => console.log(error));
 //    const myJson = await response.json(); //extract JSON from the http response
-  //  console.log(myJson);
+//    console.log(myJson);
 }
 
-// OMO - Rekuperatorius mode name
-// AH - Humidity data
-// FCG - FIlter data
-// AI0 - Supplpy temperature
-function reused_trusai(rekup_data) {
-  document.getElementById("current-humidity").value = rekup_data.A.AH;
-}
-
-
-//return an array of values that match on a certain key
-function getValues(obj, key) {
-    var objects = [];
-    for (var i in obj) {
-        if (!obj.hasOwnProperty(i)) continue;
-        if (typeof obj[i] == 'object') {
-            objects = objects.concat(getValues(obj[i], key));
-        } else if (i == key) {
-            objects.push(obj[i]);
-        }
-    }
-    return objects;
-}
-
-//return an array of keys that match on a certain value
-function getKeys(obj, val) {
-    var objects = [];
-    for (var i in obj) {
-        if (!obj.hasOwnProperty(i)) continue;
-        if (typeof obj[i] == 'object') {
-            objects = objects.concat(getKeys(obj[i], val));
-        } else if (obj[i] == val) {
-            objects.push(i);
-        }
-    }
-    return objects;
-}
+//function sorted_data(loaded_rek_data) {
+////  document.getElementById("current-humidity").innerHTML = loaded_rek_data.A.AH;  // AH - Humidity data (int + symbol + str)
+////  document.getElementById("current-filter").innerHTML = loaded_rek_data.A.FCG;   // FCG - Filter data (int + str)
+////  document.getElementById("current-supply").innerHTML = loaded_rek_data.A.AI0;   // AI0 - Supply temperature (int + symbol + str)
+////  document.getElementById("current-eco").innerHTML = loaded_rek_data.A.VF;       // VF -  Eco mode (int)
+////  document.getElementById("current-heater").innerHTML = loaded_rek_data.A.EC4;   // EC4 - Current Heater W. usage (int + str)
+//
+//  setInterval(function(){
+//                         console.log('Tested');
+//                         return sorted_data()
+//                        }, 5000)
+//                                        }

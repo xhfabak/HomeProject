@@ -6,6 +6,8 @@ from werkzeug.exceptions import HTTPException
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import local_control_file
+from flask import jsonify
+import datetime
 import requests
 
 app = Flask(__name__)
@@ -34,35 +36,29 @@ def _home_main_page():
 
 
 @auth.login_required
-@app.route("/test")
-def _testing():
-    # TEST
-    return render_template('login_page.html'), "Test page is working!"
-
-
-@auth.login_required
 @app.route("/rekuperatorius")
-def _rekuperatorius():
+def _main_rek_page():
     parsed_result = local_control_file.GetData.refresh_data_from_device()
-    # TODO: Return parsedResult to HTML render_template method.
-
     return render_template('rekup.html', title='REKUPERATORIUS')
 
 
 @app.route("/rekuperatorius/data")
-def _rekuperatorius_data():
-    print("Hitted")
-    parsed_result = local_control_file.GetData.read_json_data_from_file()
+def _return_data_from_json_file_to_web():
+    """Return expected data from JSON file."""
 
-    return parsed_result
+    sorted_out = local_control_file.StoredDataFromFile.list_of_expected_data_to_return()
+
+    return sorted_out
 
 
 @app.route("/rekuperatorius", methods=["POST"])
 def _change_ventilation_mode():
+    """Send request to change mode."""
+
     mode_options = request.args.get("mode")
     local_control_file.GetData.change_device_ventilation_state(mode_options)  # Insert other number of Mode
-    # TODO: fix, since need to return somekind of information
 
+    # TODO: fix, since need to return somekind of information
     return render_template('durys.html', title='APSAUGA')
 
 
@@ -77,14 +73,14 @@ def run_login_every_hour():
     """Make constant login page information inject (otherwise refresh data will no be reached)."""
     while True:
         local_control_file.GetData.login_page_credentials_injection()
-        time.sleep(60*60)  # sleep for 1 hour
+        time.sleep(60*60)  # sleep for 1 hour (seconds)
 
 
-def run_login_every_5sec():
-    """Make constant data request from device to update data for page widgets."""
-    while True:
-        local_control_file.GetData.refresh_data_from_device()
-        time.sleep(5)  # sleep for 5 seconds
+def return_data_from_json_file_to_web():
+    """Return expected data from JSON file."""
+
+    list_data = local_control_file.StoredDataFromFile.list_of_expected_data_to_return()
+    time.sleep(5)  # sleep for 5 seconds
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -93,8 +89,8 @@ if __name__ == "__main__":
     login_thread.daemon = True
     login_thread.start()
 
-    data_thread = threading.Thread(target=run_login_every_5sec)
-    data_thread.daemon = True
-    data_thread.start()
+    # data_thread = threading.Thread(target=return_data_from_json_file_to_web)
+    # data_thread.daemon = True
+    # data_thread.start()
 
     app.run(debug=True)

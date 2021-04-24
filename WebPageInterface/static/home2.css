@@ -258,6 +258,15 @@ a.article:hover {
 /* ---------------------------------------------------
     Rekuperatoriaus data images
 ----------------------------------------------------- */
+.mode2-name {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 3px;
+  bottom: 0px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #35b5e4;
+}
 
 .information-text {
   background-color: #cccccc; /* Used if the image is unavailable */
@@ -315,6 +324,10 @@ a.article:hover {
   background-position: center;
 }
 
-/* ---------------------------------------------------
-    Rekuperatoriaus date response
------------------------------------------------------ */
+#heater-image {
+  height: 27px;
+  width: 100%;
+  background-image: url("control_images/heater.png"); /* The image used */
+  background-repeat: no-repeat, no-repeat;
+  background-position: center;
+}
