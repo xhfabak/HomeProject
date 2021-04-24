@@ -213,7 +213,7 @@ a.article:hover {
     Rekuperatoriaus control images
 ----------------------------------------------------- */
 
-.mode-container {
+.mode-desc {
   position: relative;
   background-color: #cccccc; /* Used if the image is unavailable */
   height: 70px; /* You must set a specified height */
@@ -224,7 +224,7 @@ a.article:hover {
   background-position: center top;
 }
 .active-mode {
-    background-color: red;
+    background-color: white;  /* Choose color after selecting mode */
 }
 
 .mode-name {
@@ -237,12 +237,14 @@ a.article:hover {
   font-weight: bold;
   color: #35b5e4;
 }
+
 #away-image {
   background-image: url("control_images/1-away.png"); /* The image used */
 }
 
 #normal-image {
   background-image: url("control_images/2-normal.png"); /* The image used */
+
 }
 
 #intensive-image {
@@ -257,54 +259,62 @@ a.article:hover {
     Rekuperatoriaus data images
 ----------------------------------------------------- */
 
-.humidity-image {
+.information-text {
+  background-color: #cccccc; /* Used if the image is unavailable */
+  height: 70px; /* You must set a specified height */
+  width: 60px;
+  border: 1px solid black;
+  margin: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-position: center top;
+}
+
+.reused-data-text {
+  word-wrap: break-word;
+  text-align: center;
+  justify-content: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-size: 8px;
+  font-weight: bold;
+  color: black;
+  line-height: 1;
+}
+
+#humidity-image {
+  height: 27px;
+  width: 100%;
   background-image: url("control_images/humidity.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 70px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-position: center top;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center;
 }
 
-.income-temp-image {
+#income-temp-image {
+  height: 27px;
+  width: 100%;
   background-image: url("control_images/income_temperature.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 70px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-position: center top;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center;
 }
 
-.filter-image {
+#filter-image {
+  height: 27px;
+  width: 100%;
   background-image: url("control_images/filter_icon.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 70px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-position: center top;
+  background-repeat: no-repeat, no-repeat;
+  background-position: center;
 }
 
-.eco-system-image {
-  background-image: url("control_images/filter_icon.png"); /* The image used */
-  background-color: #cccccc; /* Used if the image is unavailable */
-  height: 70px; /* You must set a specified height */
-  width: 50px;
-  border: 1px solid black;
-  margin: 5px;
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-position: center top;
+#eco-system-image {
+  height: 27px;
+  width: 100%;
+  background-image: url("control_images/eco.png"); /* The image used */
+  background-repeat: no-repeat, no-repeat;
+  background-position: center;
 }
 
 /* ---------------------------------------------------
     Rekuperatoriaus date response
 ----------------------------------------------------- */
-
-.rekup-data {
-
-}

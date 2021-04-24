@@ -2,6 +2,7 @@ import requests
 import xmltodict
 import datetime
 import json
+import time
 
 
 # ---- Set variables ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----
@@ -10,7 +11,6 @@ _rekuperator_ip = 'http://192.168.0.200/'
 _refresh_url = 'i.asp'
 _send_request = 'ajax.xml'
 _current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-_xml_file = 'stored_rekup_data.xml'  # TODO: remove
 _json_file = 'server_response.json'
 
 
@@ -37,13 +37,22 @@ class GetData(object):
 
         refreshed_data_ip = _rekuperator_ip + _refresh_url
         refreshed_data = requests.get(url=refreshed_data_ip).text
-        # TODO: add handling if GET was not successful
 
-        GetData.save_requested_data_to_json(data=refreshed_data)
+        time.sleep(0.1)  # Magic delay
+
+        result = GetData.save_requested_data_to_json(data=refreshed_data)
 
         if log_stamp:
-            print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-                  '>> Information was updated while trying to open page <<')
+            print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), '>> Information was updated while trying to open page <<')
+
+    @staticmethod
+    def read_json_data_from_file():
+        """typo """
+
+        with open(_json_file, "r") as json_file:
+            result = json_file.read()
+
+        return result
 
     @staticmethod
     def change_device_ventilation_state(mode):
@@ -136,8 +145,12 @@ class StoredDataFromFile(object):
 
         GetData.refresh_data_from_device()
 
+        # print('test')
+
         with open(_json_file, 'r') as read_file:
-            loaded = json.loads(_json_file)
+            print(read_file)
+        #     data = json.loads(_json_file)
+        #     print(data["OMO"])
 
             # print(_current_time, f'>> {text} - {omo_result}')  # add Previous mode name before changing.
             # return omo_result

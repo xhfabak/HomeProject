@@ -43,9 +43,18 @@ def _testing():
 @auth.login_required
 @app.route("/rekuperatorius")
 def _rekuperatorius():
-    parsed_result = local_control_file.GetData.refresh_data_from_device(log_stamp=True)
+    parsed_result = local_control_file.GetData.refresh_data_from_device()
     # TODO: Return parsedResult to HTML render_template method.
+
     return render_template('rekup.html', title='REKUPERATORIUS')
+
+
+@app.route("/rekuperatorius/data")
+def _rekuperatorius_data():
+    print("Hitted")
+    parsed_result = local_control_file.GetData.read_json_data_from_file()
+
+    return parsed_result
 
 
 @app.route("/rekuperatorius", methods=["POST"])
@@ -53,6 +62,7 @@ def _change_ventilation_mode():
     mode_options = request.args.get("mode")
     local_control_file.GetData.change_device_ventilation_state(mode_options)  # Insert other number of Mode
     # TODO: fix, since need to return somekind of information
+
     return render_template('durys.html', title='APSAUGA')
 
 
