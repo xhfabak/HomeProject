@@ -1,6 +1,7 @@
 {% extends 'main_page_design.html' %}
 
 {% block first_control %}
+
 <div class="mode-desc" id="away-image" onclick="changeMode('1', this.id)">
     <div class="mode-name">Away</div>
 </div>
@@ -19,33 +20,30 @@
 
 {% block second_control %}
 
-<!--TODO getRefreshData method should be invoked periodically to refresh rekup data.-->
-
-<div class="information-text" onclick="getRefreshData()">
+<div class="information-text">
     <div id="humidity-image"></div>
     <div class="reused-data-text">Humidity</div>
-    <div class="mode2-name" id="current-humidity">data</div>
+    <div class="mode2-name" id="current-humidity">-</div>
 </div>
 <div class="information-text">
     <div id="income-temp-image"></div>
     <div class="reused-data-text">Income temp.</div>
-    <div class="mode2-name" id="current-supply">data</div>
+    <div class="mode2-name" id="current-supply">-</div>
 </div>
 <div class="information-text">
     <div id="filter-image"></div>
     <div class="reused-data-text">Filter</div>
-    <div class="mode2-name" id="current-filter">data</div>
+    <div class="mode2-name" id="current-filter">-</div>
 </div>
 <div class="information-text">
     <div id="eco-system-image"></div>
     <div class="reused-data-text">Eco mode</div>
-    <div class="mode2-name" id="current-eco">data</div>
+    <div class="mode2-name" id="current-eco">-</div>
 </div>
 <div class="information-text">
     <div id="heater-image"></div>
     <div class="reused-data-text">Heater energy</div>
-    <div class="mode2-name" id="current-heater">data</div>
+    <div class="mode2-name" id="current-heater">-</div>
 </div>
-
 
 {% endblock second_control %}

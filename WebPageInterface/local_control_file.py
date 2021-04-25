@@ -56,7 +56,7 @@ class GetData(object):
 
     @staticmethod
     def change_device_ventilation_state(mode):
-        """Change ventilation system mode by using 'ajax.xml' inject """
+        """Change ventilation system mode by using 'ajax.xml' to inject data to change mode."""
 
         # Open saved (XML) file to print previous current state
         StoredDataFromFile.ventilation_program_state(text='Mode before')
@@ -134,23 +134,28 @@ class StoredDataFromFile(object):
             return omo_result
 
     @staticmethod
-    def list_of_expected_data_to_return():
-        """Return expected data results to website to print constantly"""
+    def list_of_expected_data_to_return() -> dict:
+        """Return expected data results to website to print constantly:
+        Humidity / Income temperature (Supply) / Filter percentage / Eco mode (ON/OFF) / Heater power usage
 
-        filt = StoredDataFromFile.check_expected_data_from_json('FCG')  # Filter
+        :return: returns dict of expected sorted items from JSON
+        """
+
+        curr_mode = StoredDataFromFile.check_expected_data_from_json('OMO')  # Current ventilation mode
         humidity = StoredDataFromFile.check_expected_data_from_json('AH')  # Humidity
-        eco = StoredDataFromFile.check_expected_data_from_json('VF')  # Eco mode
         supply = StoredDataFromFile.check_expected_data_from_json('AI0')  # Supply temp
+        filt = StoredDataFromFile.check_expected_data_from_json('FCG')  # Filter
+        eco = StoredDataFromFile.check_expected_data_from_json('VF')  # Eco mode
         heater = StoredDataFromFile.check_expected_data_from_json('EC4')  # Heater power
         parsed_result = {
         "humidity": humidity,
         "supply": supply,
         "filter": filt,
         "eco": eco,
-        "heater": heater
+        "heater": heater,
+        "mode": curr_mode
         }
 
-        print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), parsed_result)
         return parsed_result
 
 

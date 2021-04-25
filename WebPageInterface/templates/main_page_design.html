@@ -13,7 +13,6 @@
     <title>HomeProject</title>
     {% endif %}
 
-
     <!-- Bootstrap CSS CDN -->
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
           integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
@@ -23,7 +22,6 @@
     <!-- Scrollbar Custom CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
           rel="stylesheet">
-
     <!-- Font Awesome JS -->
     <script crossorigin="anonymous" defer
             integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
@@ -32,6 +30,7 @@
             integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
             src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Home made JS file -->
     <script src="../../static/controls.js"></script>
 
 
@@ -40,43 +39,40 @@
 <body>
 
 <div class="wrapper">
-
     <!-- Sidebar  -->
     <nav class="mCustomScrollbar _mCS_1 mCS-autoHide" id="sidebar" style="overflow: visible;">
         <div class="mCustomScrollBox mCS-minimal mCSB_vertical mCSB_outside" id="mCSB_1" style="max-height: none;"
              tabindex="0">
             <div class="mCSB_container" dir="ltr" id="mCSB_1_container" style="position:relative; top:0; left:0;">
                 <div class="sidebar-header">
-                    <h3>HomeProject</h3>
+                    <h3>Home project</h3>
                 </div>
 
                 <ul class="list-unstyled components">
-                    <p>Current time: 00:00:00</p>
-                    <li class="active">
-                        <a href="/home">Home </a>
-                    </li>
-                    <li>
-                        <a href="/rekuperatorius">REKUPERATORIUS</a>
-                    </li>
-                    <li>
-                        <a href="/durys">DURYS</a>
-                    </li>
-                    <li>
-                        <a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#pageSubmenu">Pages</a>
-                        <ul class="collapse list-unstyled" id="pageSubmenu">
-                            <li>
-                                <a href="#">Page 1</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Page 3</a>
-                            </li>
-                        </ul>
-                    </li>
-
+<!--                    <p>Welcome to home project</p>-->
+                    <li><a href="/home">HOME</a></li>
+                    <li><a href="/rekuperatorius">REKUPERATORIUS</a></li>
+                    <li><a href="/durys">DURYS</a></li>
+<!--                    <li><a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#pageSubmenu">Pages</a>-->
+<!--                        <ul class="collapse list-unstyled" id="pageSubmenu">-->
+<!--                            <li><a href="#">Page 1</a></li>-->
+<!--                            <li><a href="#">Page 2</a></li>-->
+<!--                            <li><a href="#">Page 3</a></li>-->
+<!--                        </ul>-->
+<!--                    </li>-->
                 </ul>
+                <!--  Selection of current webpage  -->
+                <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+                <script type="text/javascript">
+                    const currentLocation = location.href;
+                    const menuItem = document.querySelectorAll('a');
+                    const menuLength = menuItem.length
+                    for (let i = 0; i<menuLength; i++){
+                    if(menuItem[i].href == currentLocation){
+                    menuItem[i].className = "active"
+                    }
+                    }
+                </script>
             </div>
         </div>
         <div class="mCSB_scrollTools mCSB_1_scrollbar mCS-minimal mCSB_scrollTools_vertical"
@@ -90,13 +86,10 @@
             </div>
         </div>
     </nav>
-
     <!-- Page Content  -->
     <div id="content">
-
         <nav class="navbar navbar-expand-lg navbar-dark bg-steel">
             <div class="container-fluid">
-
                 <button class="btn btn-info" id="sidebarCollapse" type="button">
                     <svg aria-hidden="true" class="svg-inline--fa fa-align-left fa-w-14" data-fa-i2svg=""
                          data-icon="align-left" data-prefix="fas" role="img" viewBox="0 0 448 512"
@@ -113,10 +106,8 @@
         <div class="second-control-table">
             {% block second_control %}{% endblock second_control %}
         </div>
-
     </div>
 </div>
-
 
 <!-- jQuery CDN - Slim version (=without AJAX) -->
 <script crossorigin="anonymous"
@@ -145,8 +136,6 @@
                 $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
         });
-
-
 </script>
 </body>
 

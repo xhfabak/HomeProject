@@ -8,6 +8,11 @@ body {
     background: #b8b6b6;
 }
 
+ul li a.active {
+background: #35b5e4;
+color: #fff;
+}
+
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
@@ -46,6 +51,7 @@ a:focus {
     margin: 40px 0;
 }
 
+
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -82,7 +88,7 @@ a:focus {
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: #35b5e4;
     padding: 10px;
 }
 
@@ -233,7 +239,7 @@ a.article:hover {
   padding-bottom: 3px;
   position: absolute;
   bottom: 0px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
   color: #35b5e4;
 }
@@ -263,7 +269,7 @@ a.article:hover {
   text-align: center;
   padding-bottom: 3px;
   bottom: 0px;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: bold;
   color: #35b5e4;
 }
@@ -290,6 +296,7 @@ a.article:hover {
   font-weight: bold;
   color: black;
   line-height: 1;
+  min-height: 20px;
 }
 
 #humidity-image {

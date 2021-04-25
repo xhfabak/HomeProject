@@ -28,9 +28,9 @@ def verify_password(username, password):
         return username
 
 
+@auth.login_required
 @app.route("/")
 @app.route("/home")
-@auth.login_required
 def _home_main_page():
     return render_template('login_page.html'), "Test page is working!"
 
@@ -38,10 +38,11 @@ def _home_main_page():
 @auth.login_required
 @app.route("/rekuperatorius")
 def _main_rek_page():
-    parsed_result = local_control_file.GetData.refresh_data_from_device()
+    local_control_file.StoredDataFromFile.list_of_expected_data_to_return()
     return render_template('rekup.html', title='REKUPERATORIUS')
 
 
+@auth.login_required
 @app.route("/rekuperatorius/data")
 def _return_data_from_json_file_to_web():
     """Return expected data from JSON file."""
@@ -51,6 +52,7 @@ def _return_data_from_json_file_to_web():
     return sorted_out
 
 
+@auth.login_required
 @app.route("/rekuperatorius", methods=["POST"])
 def _change_ventilation_mode():
     """Send request to change mode."""
@@ -73,14 +75,14 @@ def run_login_every_hour():
     """Make constant login page information inject (otherwise refresh data will no be reached)."""
     while True:
         local_control_file.GetData.login_page_credentials_injection()
-        time.sleep(60*60)  # sleep for 1 hour (seconds)
+        time.sleep(60*45)  # minutes
 
 
 def return_data_from_json_file_to_web():
-    """Return expected data from JSON file."""
-
-    list_data = local_control_file.StoredDataFromFile.list_of_expected_data_to_return()
-    time.sleep(5)  # sleep for 5 seconds
+    """Return expected data from JSON file to update data in webpage."""
+    while True:
+        local_control_file.StoredDataFromFile.list_of_expected_data_to_return()
+        time.sleep(5)  # seconds
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -89,8 +91,8 @@ if __name__ == "__main__":
     login_thread.daemon = True
     login_thread.start()
 
-    # data_thread = threading.Thread(target=return_data_from_json_file_to_web)
-    # data_thread.daemon = True
-    # data_thread.start()
+    data_thread = threading.Thread(target=return_data_from_json_file_to_web)
+    data_thread.daemon = True
+    data_thread.start()
 
     app.run(debug=True)
