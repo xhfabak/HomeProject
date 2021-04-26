@@ -33,7 +33,6 @@
     <!-- Home made JS file -->
     <script src="../../static/controls.js"></script>
 
-
 </head>
 
 <body>
@@ -53,13 +52,6 @@
                     <li><a href="/home">HOME</a></li>
                     <li><a href="/rekuperatorius">REKUPERATORIUS</a></li>
                     <li><a href="/durys">DURYS</a></li>
-<!--                    <li><a aria-expanded="false" class="dropdown-toggle" data-toggle="collapse" href="#pageSubmenu">Pages</a>-->
-<!--                        <ul class="collapse list-unstyled" id="pageSubmenu">-->
-<!--                            <li><a href="#">Page 1</a></li>-->
-<!--                            <li><a href="#">Page 2</a></li>-->
-<!--                            <li><a href="#">Page 3</a></li>-->
-<!--                        </ul>-->
-<!--                    </li>-->
                 </ul>
                 <!--  Selection of current webpage  -->
                 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -69,8 +61,7 @@
                     const menuLength = menuItem.length
                     for (let i = 0; i<menuLength; i++){
                     if(menuItem[i].href == currentLocation){
-                    menuItem[i].className = "active"
-                    }
+                    menuItem[i].className = "active"}
                     }
                 </script>
             </div>
@@ -126,6 +117,7 @@
 
 <script type="text/javascript">
         $(document).ready(function () {
+            loadControls();
             $("#sidebar").mCustomScrollbar({
                 theme: "minimal"
             });

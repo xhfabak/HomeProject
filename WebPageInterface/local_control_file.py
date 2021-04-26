@@ -112,7 +112,17 @@ class StoredDataFromFile(object):
                     returned_data = 'ON'
                 else:
                     returned_data = 'Check mode result!'
-                # return returned_data
+
+            # Convert str response as int
+            if checking_data == 'OMO':
+                if returned_data == 'AWAY':
+                    returned_data = 1
+                elif returned_data == 'NORMAL':
+                    returned_data = 2
+                elif returned_data == 'INTENSE':
+                    returned_data = 3
+                elif returned_data == 'BOOST':
+                    returned_data = 4
 
             return returned_data
 
@@ -153,7 +163,7 @@ class StoredDataFromFile(object):
         "filter": filt,
         "eco": eco,
         "heater": heater,
-        "mode": curr_mode
+        "curr_mode": curr_mode
         }
 
         return parsed_result
