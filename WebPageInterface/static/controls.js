@@ -21,7 +21,6 @@ function changeMode(mode){
 }
 
 function coloring(elementId){
-
            const currentActiveModeElements = document.getElementsByClassName("mode-desc active-mode");
            if (currentActiveModeElements.length > 0) {
               currentActiveModeElements[0].classList.remove("active-mode");
@@ -32,7 +31,7 @@ function coloring(elementId){
 function loadedDataDa() {
     const fetchPromise = fetch("http://127.0.0.1:5000/rekuperatorius/data");
     fetchPromise.then(response => {
-    return response.json();
+      return response.json();
     }).then(test => {
         document.getElementById("current-humidity").innerHTML = test.humidity;
         document.getElementById("current-supply").innerHTML = test.supply;
@@ -48,5 +47,5 @@ function loadedDataDa() {
 function loadControls()
 {
     loadedDataDa();
-    setInterval(loadedDataDa, 3000);  // Time is ms
+    setInterval(loadedDataDa, 5000);  // Time is ms
 }

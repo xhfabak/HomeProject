@@ -25,7 +25,7 @@ class GetData(object):
         # Login ('1') : Password ('2')
         login_data = {'1': 'user', '2': 'deltuvos31'}
         requests.post(url=_rekuperator_ip, data=login_data)
-        # TODO: add request check if POST was successful
+
         print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), '>> Login data was injected <<')
 
     @staticmethod
@@ -45,30 +45,21 @@ class GetData(object):
         if log_stamp:
             print(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"), '>> Information was updated while trying to open page <<')
 
-    @staticmethod
-    def read_json_data_from_file():
-        """typo """
-
-        with open(_json_file, "r") as json_file:
-            result = json_file.read()
-
-        return result
 
     @staticmethod
     def change_device_ventilation_state(mode):
         """Change ventilation system mode by using 'ajax.xml' to inject data to change mode."""
 
         # Open saved (XML) file to print previous current state
-        StoredDataFromFile.ventilation_program_state(text='Mode before')
+        StoredDataFromFile.ventilation_program_state(text='Mode before >')
 
         # Send request to change mode
         url = _rekuperator_ip + _send_request
         myobj = {'3': mode}  # '3' - mode request || mode - (int) of selected item
         request_to_change_mode = requests.post(url=url, data=myobj)
-        # TODO: add handling if POST was not successful
 
         # Return new changed state
-        StoredDataFromFile.ventilation_program_state(text='Mode after')
+        StoredDataFromFile.ventilation_program_state(text='Mode after >')
 
     @staticmethod
     def save_requested_data_to_json(data: str):
@@ -100,6 +91,7 @@ class StoredDataFromFile(object):
         GetData.refresh_data_from_device()
 
         with open(_json_file, 'r') as read_file:
+
             json_data = json.load(read_file)
             returned_data = json_data['A'][checking_data]
 
@@ -151,20 +143,25 @@ class StoredDataFromFile(object):
         :return: returns dict of expected sorted items from JSON
         """
 
-        curr_mode = StoredDataFromFile.check_expected_data_from_json('OMO')  # Current ventilation mode
-        humidity = StoredDataFromFile.check_expected_data_from_json('AH')  # Humidity
-        supply = StoredDataFromFile.check_expected_data_from_json('AI0')  # Supply temp
-        filt = StoredDataFromFile.check_expected_data_from_json('FCG')  # Filter
-        eco = StoredDataFromFile.check_expected_data_from_json('VF')  # Eco mode
-        heater = StoredDataFromFile.check_expected_data_from_json('EC4')  # Heater power
-        parsed_result = {
-        "humidity": humidity,
-        "supply": supply,
-        "filter": filt,
-        "eco": eco,
-        "heater": heater,
-        "curr_mode": curr_mode
-        }
+        try:
+            curr_mode = StoredDataFromFile.check_expected_data_from_json('OMO')  # Current ventilation mode
+            humidity = StoredDataFromFile.check_expected_data_from_json('AH')  # Humidity
+            supply = StoredDataFromFile.check_expected_data_from_json('AI0')  # Supply temp
+            filt = StoredDataFromFile.check_expected_data_from_json('FCG')  # Filter
+            eco = StoredDataFromFile.check_expected_data_from_json('VF')  # Eco mode
+            heater = StoredDataFromFile.check_expected_data_from_json('EC4')  # Heater power
+            parsed_result = {
+            "humidity": humidity,
+            "supply": supply,
+            "filter": filt,
+            "eco": eco,
+            "heater": heater,
+            "curr_mode": curr_mode
+            }
+
+        except Exception as exc:
+            print("Parsing FAILED with error: ", str(exc))
+            return None
 
         return parsed_result
 

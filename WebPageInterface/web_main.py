@@ -1,14 +1,11 @@
 import threading
 import time
 
-from flask import Flask, render_template, json, url_for, request
-from werkzeug.exceptions import HTTPException
+from flask import Flask, render_template, request
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
 import local_control_file
 from flask import jsonify
-import datetime
-import requests
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
@@ -16,8 +13,6 @@ auth = HTTPBasicAuth()
 
 users = {
     "nologin": generate_password_hash("test123"),
-    "safelogin": generate_password_hash("nopassword"),
-    "admin": generate_password_hash("admin"),
 }
 
 
@@ -48,8 +43,7 @@ def _return_data_from_json_file_to_web():
     """Return expected data from JSON file."""
 
     sorted_out = local_control_file.StoredDataFromFile.list_of_expected_data_to_return()
-
-    return sorted_out
+    return jsonify(sorted_out)
 
 
 @auth.login_required
@@ -59,9 +53,7 @@ def _change_ventilation_mode():
 
     mode_options = request.args.get("mode")
     local_control_file.GetData.change_device_ventilation_state(mode_options)  # Insert other number of Mode
-
-    # TODO: fix, since need to return somekind of information
-    return render_template('durys.html', title='APSAUGA')
+    return render_template('testing_template.html', title='REKUPERATORIUS')
 
 
 @auth.login_required

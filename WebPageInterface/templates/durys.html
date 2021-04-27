@@ -1,5 +1,24 @@
 {% extends 'main_page_design.html' %}
 
 {% block first_control %}
-    <div><h1>Testing part...</h1></div>
+
+    <div class="regroup-switch">
+        <div>Door sensor notifications:</div>
+        <label class="switch">
+            <input type="checkbox">
+                <span class="slider"></span>
+        </label>
+
+        <div>Notify:</div>
+        <label class="switch">
+            <input type="checkbox" checked>
+                <span class="slider"></span>
+
+        </label>
+        <label class="switch">
+            <input type="checkbox">
+                <span class="slider"></span>
+        </label>
+    </div>
+
 {% endblock first_control %}

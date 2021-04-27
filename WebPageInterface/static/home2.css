@@ -215,8 +215,72 @@ a.article:hover {
     border-radius: 0;
     margin-left: 0;
 }
+
 /* ---------------------------------------------------
-    Rekuperatoriaus control images
+    Door switches
+----------------------------------------------------- */
+.door-main-text{
+    font-size: 1.75rem;
+    padding: 10px;
+    font-family: 'Poppins', sans-serif;
+    color: #2a97bf;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.regroup-switch {
+    padding: 10px;
+    position: absolute;
+    text-align: left;
+}
+
+.switch {
+    position: relative;
+    display: flex;
+    width: 70px;
+    height: 40px;
+    margin: 15 0px;
+    padding: 10px;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.switch input {display: none}
+
+.slider:before{
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 30px;
+    left: 5px;
+    bottom: 5px;
+    background: white;
+    transition: .4s;
+    border-radius: 30px;
+}
+
+input:checked + .slider
+{
+    background-color: #35b5e4;
+}
+
+input:checked + .slider:before
+{
+    transform: translateX(30px);
+}
+
+/* ---------------------------------------------------
+    Air ventilation control images
 ----------------------------------------------------- */
 
 .mode-desc {
@@ -262,8 +326,9 @@ a.article:hover {
 }
 
 /* ---------------------------------------------------
-    Rekuperatoriaus data images
+    Air ventilation constant refreshing data (below images)
 ----------------------------------------------------- */
+
 .mode2-name {
   width: 100%;
   text-align: center;
