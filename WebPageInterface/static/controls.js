@@ -8,10 +8,11 @@ var modeMapping =
 
 function changeMode(mode){
        const thisId = modeMapping[mode];
-       fetch(new Request(`http://127.0.0.1:5000/rekuperatorius?mode=${mode}`,
+       fetch(new Request(`http://77.90.71.51:5000/rekuperatorius?mode=${mode}`,
          {
              method: "POST",
-             headers: {"Access-Control-Allow-Origin": "true"}
+             headers: {"Access-Control-Allow-Origin": "true"},
+             mode: 'no-cors'
          }
        )).then(response => {
            if (!response.ok) throw Error(response.statusText)
@@ -29,20 +30,27 @@ function coloring(elementId){
 }
 
 function loadedDataDa() {
-    const fetchPromise = fetch("http://127.0.0.1:5000/rekuperatorius/data");
-    fetchPromise.then(response => {
-      return response.json();
-    }).then(test => {
-        document.getElementById("current-humidity").innerHTML = test.humidity;
-        document.getElementById("current-supply").innerHTML = test.supply;
-        document.getElementById("current-filter").innerHTML = test.filter;
-        document.getElementById("current-eco").innerHTML = test.eco;
-        document.getElementById("current-heater").innerHTML = test.heater;
-        let mode = test.curr_mode;
-        let elementId = modeMapping[mode];
-        coloring(elementId);
-    });
+    if (document.getElementsByClassName("mode-desc").length > 0) {
+        const fetchPromise = fetch("http://77.90.71.51:5000/rekuperatorius/data",
+         {
+         method: "GET",
+         headers: {"Access-Control-Allow-Origin": "true"},
+         mode: 'no-cors'
+           });
+        fetchPromise.then(response => {
+          return response.json();
+        }).then(test => {
+            document.getElementById("current-humidity").innerHTML = test.humidity;
+            document.getElementById("current-supply").innerHTML = test.supply;
+            document.getElementById("current-filter").innerHTML = test.filter;
+            document.getElementById("current-eco").innerHTML = test.eco;
+            document.getElementById("current-heater").innerHTML = test.heater;
+            let mode = test.curr_mode;
+            let elementId = modeMapping[mode];
+            coloring(elementId);
+        });
     }
+}
 
 function loadControls()
 {
